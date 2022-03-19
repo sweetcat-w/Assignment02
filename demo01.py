@@ -6,7 +6,7 @@
 
 import requests,json
 import urllib3
-import datetime,time,os
+import datetime,time
 
 # 存放访问网址
 def main():
