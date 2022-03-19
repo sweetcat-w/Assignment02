@@ -11,7 +11,10 @@ import datetime,time
 # 存放访问网址
 def main():
     url = "https://j1.pupuapi.com/client/marketing/storeproduct/v2/search?business=scenes&business_id=f14c37f7-3ff3-44da-a925-c2a158bf522d&category_id=f14c37f7-3ff3-44da-a925-c2a158bf522d&in_stock=-1&page=1&size=20&sort=0&store_id=7c1208da-907a-4391-9901-35a60096a3f9&tag=-1"
-    get(url)
+    # 每隔1分钟实时刷新
+    while True:
+        get(url)
+        time.sleep(60)
 
 # 数据清洗
 def get(url):
@@ -62,7 +65,7 @@ def showData(list):
     print("价格：" + str(list[0]['p_price']))
     print("原价/折扣价：" + str(list[0]['p_price']) + "/" +str(list[0]['p_marketPrice']))
     print("详细信息：" + list[0]['p_subTitle'])
-    print("\n---------------监控朴朴超市休闲零食新品专区商品的价格波动----------------")
+    print("\n--------------实时监控朴朴超市休闲零食新品专区商品的价格波动---------------")
     # 获取当前时间
     date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     print("当前时间为：" + date)
