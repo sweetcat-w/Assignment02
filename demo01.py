@@ -6,7 +6,7 @@
 
 import requests,json
 import urllib3
-import datetime
+import datetime,time,os
 
 # 存放访问网址
 def main():
@@ -57,11 +57,20 @@ def askUrl(url):
 # 数据展示
 def showData(list):
     # 单个数据展示
-    print("-----------------------商品：" + list[0]['p_name'] + "-----------------------")
+    print("\n--------------商品：" + list[0]['p_name'] + "--------------")
     print("规格：" + list[0]['p_spec'])
     print("价格：" + str(list[0]['p_price']))
     print("原价/折扣价：" + str(list[0]['p_price']) + "/" +str(list[0]['p_marketPrice']))
     print("详细信息：" + list[0]['p_subTitle'])
+    print("\n---------------监控朴朴超市休闲零食新品专区商品的价格波动----------------")
+    # 获取当前时间
+    date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print("当前时间为：" + date)
+    # 遍历展示所有商品的信息
+    i = 1
+    for item in list:
+        print(str(i) + "、 " + item['p_name'] + ",【价格为：" + str(item['p_price']) + "】")
+        i = i+1
 
 
 # 调用函数
